@@ -1,0 +1,18 @@
+<div class="category-buttons">
+    <button (click)="onCategoryChange('')">All</button>
+    <button (click)="onCategoryChange('nature')">Nature</button>
+    <button (click)="onCategoryChange('technology')">Technology</button>
+    <button (click)="onCategoryChange('people')">People</button>
+    <button (click)="onCategoryChange('cars')">Actors</button>
+
+  </div>
+  
+  <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1"
+      (scrolled)="onScroll()">
+    <div class="image-container" *ngFor="let image of images">
+      <img [src]="image.urls.small" alt="{{ image.description }}" (click)="viewImage(image.urls.full)">
+    </div>
+  </div>
+  
+  <app-image-viewer *ngIf="selectedImage" [image]="selectedImage" (close)="closeViewer()"></app-image-viewer>
+  
